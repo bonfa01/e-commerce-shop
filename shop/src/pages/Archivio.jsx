@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import "../styles/Home.css";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";

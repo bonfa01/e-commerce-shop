@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/Home.css";
-import { Link } from "react-router-dom";
-import Newsletter from "../components/Newsletter.jsx";
+
 
 function Errore() {
   return (
