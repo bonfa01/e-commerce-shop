@@ -1,4 +1,5 @@
-import { ShoppingCart, Heart } from "lucide-react";
+import React from 'react';
+import { ShoppingCart, Eye, Wand2, Heart } from 'lucide-react';
 import "../styles/ProductCard.css";
 
 export default function ProductCard({ product, wishlist, toggleWishlist, addToCart }) {
@@ -33,3 +34,4 @@ export default function ProductCard({ product, wishlist, toggleWishlist, addToCa
     </div>
   );
 }
+
