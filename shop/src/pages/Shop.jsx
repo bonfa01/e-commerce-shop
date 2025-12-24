@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
+import { Search , Heart, ShoppingCart} from "lucide-react";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -44,25 +44,31 @@ export default function SalesFlow() {
 
       {/* SEARCH BAR + ACTIONS */}
       <div className="search-bar">
-        <div className="search-wrapper">
-          <Search className="search-icon" />
-          <input
-            type="text"
-            placeholder="Cerca prodotti..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-        </div>
+  <div className="search-wrapper">
+    <Search className="search-icon" />
+    <input
+      type="text"
+      placeholder="Cerca..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="search-input"
+    />
+  </div>
 
-        <div className="actions-bar">
-          <button className="favorites-btn">❤️ Preferiti</button>
-          <button className="cart-btn">
-            🛒 Carrello
-            <span className="cart-count">{cart}</span>
-          </button>
-        </div>
+  <div className="actions-bar">
+    <button className="favorites-btn">
+      <Heart size={20} />
+      <span>Preferiti</span>
+    </button>
+    <button className="cart-btn">
+      <div className="cart-icon-wrapper">
+        <ShoppingCart size={20} />
+        {cart > 0 && <span className="cart-count">{cart}</span>}
       </div>
+      <span>Carrello</span>
+    </button>
+  </div>
+</div>
 
       {/* PRODUCTS GRID */}
       <ProductsGrid

@@ -3,6 +3,8 @@ import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react';
 import '../styles/ProductDetail.css';
 
 export default function ProductDetails({ product, onBack, onAddToCart, wishlist, toggleWishlist }) {
+  
+  }
   // Variant State
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || '');
@@ -163,4 +165,3 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
       </div>
     </div>
   );
-}

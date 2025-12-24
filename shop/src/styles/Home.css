@@ -259,171 +259,158 @@ h1, h2, h3, h4, h5 {
   background: var(--accent-1);
   margin: 60px auto;
   border-radius: 2px;
+}.programma {
+  padding: 4rem 2rem 8rem;
+  background: var(--secondary);
 }
-/* Programma */
-.programma {
-    padding: 6rem 2rem;
-    background: var(--secondary);
-  }
-  
-  .section-title-pop {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(32px, 6vw, 56px);
-    line-height: clamp(38px, 6vw, 64px);
-    font-weight: 900;
-    color: var(--secondary);
-    margin-bottom: 4rem;
-    letter-spacing: -1px;
-  }
-  
-  .programma-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-  
-  .evento-card {
-    background: var(--secondary);
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    border: 3px solid var(--accent-3);
-  }
-  
-  .evento-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-1);
-  }
-  
-  .evento-giorno {
-    color: var(--accent-1);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: var(--h5-size);
-    line-height: var(--h5-line);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .evento-orario {
-    color: var(--primary);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
-    font-size: clamp(var(--h1-size), 4vw, 36px);
-    line-height: clamp(var(--h1-line), 4vw, 42px);
-    margin-bottom: 1rem;
-  }
-  
-  .evento-card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: var(--h3-size);
-    line-height: var(--h3-line);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-  
-  .evento-card p {
-    font-size: var(--h4-size);
-    line-height: var(--h4-line);
-    color: var(--accent-2);
-  }
-  
-  /* Gallery Teaser */
-  .gallery-teaser {
-    padding: 6rem 2rem;
-    background: var(--secondary);
-  }
-  
-  .gallery-scroll {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .gallery-item-teaser {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    height: 350px;
-    box-shadow: 0 10px 30px rgba(0, 61, 50, 0.15);
-    cursor: pointer;
-    border: 4px solid var(--accent-3);
-    transition: border-color 0.3s ease;
-  }
-  
-  .gallery-item-teaser:hover {
-    border-color: var(--accent-1);
-  }
-  
-  .gallery-item-teaser img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .gallery-item-teaser:hover img {
-    transform: scale(1.1);
-  }
-  
-  .gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, var(--primary), transparent);
-    color: var(--secondary);
-    padding: 2rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
-    font-size: var(--h3-size);
-    line-height: var(--h3-line);
-    letter-spacing: 1px;
-  }
 
-/* Responsive */
+.programma-title {
+  text-align: center;
+  font-size: clamp(32px, 5vw, 60px);
+  color: var(--primary);
+  margin-bottom: 4rem;
+  font-weight: 900;
+}
+
+.programma-flex {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 650px; /* Altezza ottimale per la lista puntata */
+}
+
+.evento-card-expand {
+  position: relative;
+  flex: 1; 
+  background-color: var(--primary);
+  border-radius: 35px;
+  padding: 2.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
+  border: 2px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Effetto Hover sulle card chiuse */
+.evento-card-expand:not(.active):hover {
+  border-color: var(--accent-1);
+  transform: translateY(-5px);
+}
+
+/* Icona Info centrale (Card Chiusa) */
+.info-icon-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-1);
+  z-index: 3;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+.evento-card-expand.active .info-icon-wrapper {
+  opacity: 0;
+  transform: translate(-50%, -150%);
+  visibility: hidden;
+}
+
+/* Card Espansa */
+.evento-card-expand.active {
+  flex: 8; 
+  background-color: var(--white);
+  border-color: var(--accent-1);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  text-align: left; /* Allineamento a sinistra per la lista */
+}
+
+/* Gestione Contenuto */
+.card-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  height: 100%;
+}
+
+.evento-card-expand.active .card-content {
+  opacity: 1;
+  pointer-events: all;
+  transition-delay: 0.3s; 
+}
+
+.evento-giorno {
+  font-size: 1.2rem;
+  color: var(--accent-1);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.evento-card-expand h3 {
+  font-size: 3rem;
+  color: var(--primary);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+/* LISTA PUNTATA ATTIVITÀ */
+.evento-lista-puntata {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+}
+
+.evento-lista-puntata li {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(200, 159, 129, 0.2);
+  color: var(--primary);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s ease forwards;
+}
+
+.evento-card-expand.active li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay per animazione a cascata della lista */
+.evento-card-expand.active li:nth-child(1) { transition-delay: 0.4s; }
+.evento-card-expand.active li:nth-child(2) { transition-delay: 0.5s; }
+.evento-card-expand.active li:nth-child(3) { transition-delay: 0.6s; }
+
+.evento-lista-puntata .ora {
+  font-weight: 900;
+  color: var(--accent-1);
+  min-width: 85px;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 @media (max-width: 1024px) {
-  .floating-pandas {
-    display: none;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-stats {
-    grid-template-columns: 1fr;
-  }
+  .about-grid { grid-template-columns: 1fr; }
+  .programma-flex { height: auto; flex-direction: column; }
+  .evento-card-expand { flex: none; width: 100%; min-height: 140px; }
+  .evento-card-expand.active { min-height: 450px; }
+  .info-icon-wrapper { top: 70px; }
 }
 
 @media (max-width: 768px) {
-  .hero-main {
-    min-height: auto;
-    padding: 3rem 1.5rem;
-  }
-
-  .hero-info {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .info-box {
-    width: 100%;
-  }
-
-  .gallery-scroll {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
+  .hero-title { font-size: 70px; }
+  .about-stats { grid-template-columns: 1fr; }
+  .stat { padding: 1rem; }
+  .evento-card-expand h3 { font-size: 2rem; }
 }

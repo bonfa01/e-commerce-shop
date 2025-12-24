@@ -1,6 +1,6 @@
 .newsletter {
     background: #003d33;
-    color: #f2ebd1;
+    color: #f2ebd1 ;
     padding: 2rem 1rem;
     text-align: center;
     
@@ -9,7 +9,10 @@
   
   .newsletter h2 {
     font-size: 1.5rem;
+    text-decoration: none;
+    color: #f2ebd1;
     margin-bottom: 0.5rem;
+    border-bottom: 0rem;
   }
   
   .newsletter p {

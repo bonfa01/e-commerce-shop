@@ -1,42 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom"; 
 import "../styles/Header.css";
 
 export default function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation(); // Per capire in quale pagina ti trovi
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isActive = (path) => location.pathname === path ? "active" : "";
 
   return (
-    <header className="header">
-      <div className="header-inner">
-        <div className="logo">
-          <img
-            src="https://www.carsized.com/resources/fiat/panda/h3-4x4/1991/sl_260097096_fiat-panda-1991-side-view_4x.png"
-            alt="Logo"
-            className="logo-img"
-          />
-          <h1>Pandino SHOP</h1>
-        </div>
+    <header className={`header ${isScrolled ? "scrolled" : ""}`}>
+      <nav className="header-nav">
+        <Link to="/" className={`nav-link ${isActive("/")}`}>Home</Link>
+        <Link to="/about" className={`nav-link ${isActive("/about")}`}>Chi Siamo</Link>
+        <Link to="/shop" className={`nav-link ${isActive("/shop")}`}>Shop</Link>
+        <Link to="/archivio" className={`nav-link ${isActive("/archivio")}`}>Archivio</Link>
+      </nav>
 
-        <nav className="header-nav">
-          <a href="#">Home</a>
-          <a href="#">Chi Siamo</a>
-          <a href="#">Shop</a>
-          <a href="#">Archivio</a>
-        </nav>
+      <button className="burger-btn" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
+        {mobileNavOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
 
-        <button className="burger-btn" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
-          {mobileNavOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+      <div className={`mobile-nav ${mobileNavOpen ? "open" : ""}`}>
+        <Link to="/" onClick={() => setMobileNavOpen(false)}>Home</Link>
+        <Link to="/about" onClick={() => setMobileNavOpen(false)}>Chi Siamo</Link>
+        <Link to="/shop" onClick={() => setMobileNavOpen(false)}>Shop</Link>
+        <Link to="/archivio" onClick={() => setMobileNavOpen(false)}>Archivio</Link>
       </div>
-
-      {mobileNavOpen && (
-        <div className="mobile-nav">
-          <a href="#">Home</a>
-          <a href="#">Chi Siamo</a>
-          <a href="#">Shop</a>
-          <a href="#">Archivio</a>
-        </div>
-      )}
     </header>
   );
 }
