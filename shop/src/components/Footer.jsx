@@ -1,38 +1,36 @@
 import "../styles/Footer.css";
-import { ShoppingCart } from "lucide-react";
+
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-col">
-          <h3><ShoppingCart className="w-4 h-4" /> Pandino SHOP</h3>
-          <p>The best e-commerce platform for your shopping needs.</p>
+          <h3> Pandino </h3>
+          <p>vienici a trovare pure tu</p>
         </div>
 
         <div className="footer-col">
           <h4>Support</h4>
           <ul>
-            <li>Contact Us</li>
-            <li>FAQs</li>
-            <li>Shipping</li>
-            <li>Returns</li>
+            <li>contatti</li>
+            <li>dove siamo</li>
+            <li>privacy</li>
           </ul>
         </div>
 
         <div className="footer-col">
-          <h4>Company</h4>
+          <h4>seguici</h4>
           <ul>
-            <li>About</li>
-            <li>Careers</li>
-            <li>Blog</li>
-            <li>Terms</li>
+            <li><a href="https://www.instagram.com/pandaapandino/" target="_blank">instagram</a></li>
+            <li><a href="https://www.facebook.com/pandaapandino" target="blank">facebook</a></li>
+            <li><a href="https://www.youtube.com/@pandaapandino3608" target="blank">youtube</a></li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        &copy; 2025 Pandino SHOP. All rights reserved.
+        &copy; 2025 Pandino. All rights reserved.
       </div>
     </footer>
   );

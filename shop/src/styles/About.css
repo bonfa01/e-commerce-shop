@@ -1,110 +1,57 @@
-/* Layout Generale */
-.chi-siamo-container {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
-    line-height: 1.8;
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.about-row {
+  display: flex;
+  align-items: flex-start; 
+  padding: 40px 0;
+}
+
+.about-title {
+  flex: 0 0 30%; 
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.about-text {
+  flex: 0 0 70%; 
+  margin: 0;
+  line-height: 1.8;
+  color: #444;
+  text-align: justify;
+}
+
+
+.separator {
+  border: 0;
+  border-top: 1px solid #2c3e50;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .about-row {
+    flex-direction: column;
   }
   
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+  .about-title {
+    margin-bottom: 15px;
+    width: 100%;
   }
   
-  /* Header */
-  .header-chi-siamo {
-    background-color: #560bad;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-    margin-bottom: 40px;
+  .about-text {
+    width: 100%;
   }
-  
-  .header-chi-siamo h1 { font-size: 3rem; margin: 0; }
-  .tagline { font-size: 1.2rem; opacity: 0.9; }
-  
-  /* Blocchi Sezione */
-  .section-block {
-    padding: 60px 0;
-  }
-  
-  .bg-light {
-    background: #f9f9f9;
-    padding: 60px 40px;
-    border-radius: 20px;
-  }
-  
-  h2 {
-    color: #560bad;
-    border-bottom: 3px solid #560bad;
-    display: inline-block;
-    margin-bottom: 30px;
-  }
-  
-  /* Griglia Card */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-  }
-  
-  .card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  
-  /* --- BOTTONE CORRETTO --- */
-  .cta-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-  }
-  
-  .btn-panda {
-      --color: #560bad;
-      font-family: inherit;
-      display: inline-block;
-      width: 12em;
-      height: 2.8em;
-      line-height: 2.5em;
-      position: relative;
-      cursor: pointer;
-      overflow: hidden;
-      border: 2px solid var(--color);
-      transition: color 0.5s;
-      isolation: isolate; /* Per mantenere il cerchio dietro il testo */
-      font-size: 17px;
-      border-radius: 8px;
-      font-weight: 600;
-      color: var(--color);
-      background: transparent;
-  }
-  
-  .btn-panda:before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      background: var(--color);
-      height: 150px;
-      width: 250px;
-      border-radius: 50%;
-      top: 100%;
-      left: 100%;
-      transition: all 0.7s;
-  }
-  
-  .btn-panda:hover {
-      color: #fff;
-  }
-  
-  .btn-panda:hover:before {
-      top: -30px;
-      left: -30px;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-      .header-chi-siamo h1 { font-size: 2rem; }
-  }
+}
