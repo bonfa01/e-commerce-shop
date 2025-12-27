@@ -4,9 +4,11 @@ import Shop from "./pages/Shop";
 import About from "./pages/About";
 import Archivio from "./pages/Archivio";
 import Errore from "./pages/Errore";
+import { CartProvider } from "./context/CartContext.jsx";
 
 export default function App() {
   return (
+  <CartProvider>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
@@ -14,5 +16,6 @@ export default function App() {
       <Route path="/archivio" element={<Archivio />} />
       <Route path="*" element={<Errore />} />
     </Routes>
+  </CartProvider>
   );
 }

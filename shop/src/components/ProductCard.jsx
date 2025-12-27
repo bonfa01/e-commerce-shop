@@ -26,7 +26,7 @@ export default function ProductCard({ product, wishlist, toggleWishlist, addToCa
         <div className="price">
           <span className="price-main">${getPrice()}</span>
           {product.discount > 0 && <span className="original">${product.price.toFixed(2)}</span>}
-          <button className="add-cart" onClick={() => addToCart()}>
+          <button className="add-cart" onClick={() => addToCart(product)}>
             <ShoppingCart className="w-4 h-4" />
           </button>
         </div>

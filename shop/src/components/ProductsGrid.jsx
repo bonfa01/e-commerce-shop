@@ -13,7 +13,7 @@ export default function ProductsGrid({ products, wishlist, toggleWishlist, addTo
               product={product}
               wishlist={wishlist}
               toggleWishlist={toggleWishlist}
-              addToCart={() => addToCart(product.id)}
+              addToCart={() => addToCart(product)}
             />
           ))}
         </div>
