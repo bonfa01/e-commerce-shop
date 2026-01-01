@@ -1,10 +1,9 @@
 import ProductCard from "./ProductCard";
 import "../styles/ProductGrid.css";
 
-export default function ProductsGrid({ products, wishlist, toggleWishlist, addToCart }) {
+export default function ProductsGrid({ products, wishlist, toggleWishlist, addToCart, onProductClick }) {
   return (
     <section className="products-section">
-      <p className="products-count">Mostrando {products.length} prodotti</p>
       {products.length > 0 ? (
         <div className="products-grid">
           {products.map((product) => (
@@ -14,6 +13,7 @@ export default function ProductsGrid({ products, wishlist, toggleWishlist, addTo
               wishlist={wishlist}
               toggleWishlist={toggleWishlist}
               addToCart={() => addToCart(product)}
+              onProductClick={() => onProductClick(product)} 
             />
           ))}
         </div>

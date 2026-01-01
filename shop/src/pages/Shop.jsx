@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase.js";
-
-// Import dei componenti
+import { Search, Heart, ShoppingCart } from "lucide-react";
+import { useCart } from "../context/CartContext";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 import ProductsGrid from "../components/ProductsGrid.jsx";
 import Carrello from "../components/Carrello.jsx";
-
-// Import icone e stili
-import { Search, Heart, ShoppingCart } from "lucide-react";
+import ProductDetails from "../components/ProductDetail.jsx";
 import "../styles/Shop.css";
 
-// IMPORTANTE: Importiamo l'hook del carrello globale con la "C" maiuscola
-import { useCart } from "../context/CartContext";
-
 export default function Shop() {
-  // 1. STATO LOCALE (Sempre per primi)
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null); 
 
-  // 2. CONTEXT HOOK (Punto critico dell'errore precedente)
-  // Estrarre cartCount qui permette al badge dell'icona di aggiornarsi subito
-  const { 
-    cartItems, 
-    addToCart, 
-    onUpdateQuantity, 
-    onRemoveItem, 
-    cartCount } = useCart();
+  const {
+    cartItems,
+    addToCart,
+    onUpdateQuantity,
+    onRemoveItem,
+    cartCount
+  } = useCart();
 
-  // 3. EFFETTI (Sempre dopo lo stato e il context)
   useEffect(() => {
-    const fetchProducts = async () => {  
+    const fetchProducts = async () => {
       try {
         const productsCollection = collection(db, "products");
         const productsSnapshot = await getDocs(productsCollection);
@@ -53,20 +46,48 @@ export default function Shop() {
   // Gestione Wishlist
   const toggleWishlist = (id) => setWishlist((prev) => ({ ...prev, [id]: !prev[id] }));
 
+  // NUOVO: Handler per aprire i dettagli del prodotto
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  // NUOVO: Handler per tornare alla griglia prodotti
+  const handleBackToShop = () => {
+    setSelectedProduct(null);
+  };
+
   // Filtro ricerca
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Se è selezionato un prodotto, mostra la pagina dettaglio
+  if (selectedProduct) {
+    return (
+      <div className="salesflow-container">
+        <Header />
+        <ProductDetails
+          product={selectedProduct}
+          onBack={handleBackToShop}
+          onAddToCart={addToCart}
+          wishlist={wishlist}
+          toggleWishlist={toggleWishlist}
+        />
+        <Footer />
+      </div>
+    );
+  }
+
+  // Altrimenti mostra la griglia prodotti normale
   return (
     <div className="salesflow-container">
       <Header />
 
       {/* Il Carrello Overlay: sincronizzato con il Context globale */}
-      <Carrello 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
-        cartItems={cartItems} 
+      <Carrello
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartItems={cartItems}
         onUpdateQuantity={onUpdateQuantity}
         onRemoveItem={onRemoveItem}
       />
@@ -88,11 +109,10 @@ export default function Shop() {
             <Heart size={20} />
             <span>Preferiti</span>
           </button>
-          
+
           <button className="cart-btn" onClick={() => setIsCartOpen(true)}>
             <div className="cart-icon-wrapper">
               <ShoppingCart size={20} />
-              {/* Il badge si aggiorna istantaneamente perché usa cartCount dal Context */}
               {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
             </div>
             <span>Carrello</span>
@@ -104,7 +124,8 @@ export default function Shop() {
         products={filteredProducts}
         wishlist={wishlist}
         toggleWishlist={toggleWishlist}
-        addToCart={addToCart} 
+        addToCart={addToCart}
+        onProductClick={handleProductClick} 
       />
 
       <Newsletter />

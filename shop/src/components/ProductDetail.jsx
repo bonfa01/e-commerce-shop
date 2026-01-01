@@ -3,8 +3,6 @@ import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react';
 import '../styles/ProductDetail.css';
 
 export default function ProductDetails({ product, onBack, onAddToCart, wishlist, toggleWishlist }) {
-  
-  }
   // Variant State
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || '');
@@ -40,7 +38,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
       </button>
 
       <div className="details-wrapper">
-        {/* Left Column: Image */}
         <div className="details-image-section">
           <div className="main-image-wrapper">
             <img 
@@ -63,7 +60,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
           </div>
         </div>
 
-        {/* Right Column: Product Info */}
         <div className="details-info-section">
           <h1 className="details-title">{product.name}</h1>
           
@@ -75,22 +71,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
                 <span className="discount-badge">-{product.discount}%</span>
               </>
             )}
-          </div>
-
-          {/* Category */}
-          {product.category && (
-            <div className="product-category">
-              <span className="category-label">Categoria:</span>
-              <span className="category-value">{product.category}</span>
-            </div>
-          )}
-
-          {/* Description */}
-          <div className="details-section">
-            <h3 className="section-title">Descrizione</h3>
-            <p className="description-text">
-              {product.description || 'Descrizione prodotto non disponibile.'}
-            </p>
           </div>
 
           {/* Features */}
@@ -108,7 +88,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
             </div>
           )}
 
-          {/* Size Selection */}
           {product.sizes && product.sizes.length > 0 && (
             <div className="variant-section">
               <label className="variant-label">Taglia:</label>
@@ -126,7 +105,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
             </div>
           )}
 
-          {/* Color Selection */}
           {product.colors && product.colors.length > 0 && (
             <div className="variant-section">
               <label className="variant-label">Colore:</label>
@@ -146,7 +124,6 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
             </div>
           )}
 
-          {/* Add to Cart Button */}
           <button 
             onClick={handleAddToCart}
             className="add-to-cart-button"
@@ -155,13 +132,12 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
             Aggiungi al Carrello
           </button>
 
-          {/* Shipping Info */}
           <div className="shipping-info">
             <p>✓ Spedizione gratuita sopra €50</p>
             <p>✓ Reso gratuito entro 30 giorni</p>
-            <p>✓ Garanzia 2 anni</p>
           </div>
         </div>
       </div>
     </div>
   );
+}
