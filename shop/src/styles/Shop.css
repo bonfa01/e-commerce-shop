@@ -62,7 +62,6 @@
   gap: 1rem;
 }
 
-.favorites-btn,
 .cart-btn {
   background: white; 
   color: #003d33;
@@ -84,11 +83,6 @@
   color: #f2ebd1;
 }
 
-.favorites-btn:hover {
-  background: #fdfaf0;
-  border-color: #c89f81;
-  color: #c89f81;
-}
 
 .cart-btn:hover {
   background: #c89f81;
@@ -130,7 +124,7 @@
     width: 100%;
   }
 
-  .favorites-btn, .cart-btn {
+  .cart-btn {
     flex: 1;
     justify-content: center;
     font-size: 0.85rem;

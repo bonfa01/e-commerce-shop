@@ -6,7 +6,7 @@ import "../styles/Header.css";
 export default function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation(); // Per capire in quale pagina ti trovi
+  const location = useLocation(); 
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);

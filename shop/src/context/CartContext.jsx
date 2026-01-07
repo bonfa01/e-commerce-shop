@@ -12,13 +12,20 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("pandaCart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // ✅ AGGIUNTA AL CARRELLO CON VARIANTI
   const addToCart = (product) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find(item =>
+        item.id === product.id &&
+        item.selectedSize === product.selectedSize &&
+        item.selectedColor === product.selectedColor
+      );
 
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id
+          item.id === product.id &&
+          item.selectedSize === product.selectedSize &&
+          item.selectedColor === product.selectedColor
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -27,15 +34,19 @@ export const CartProvider = ({ children }) => {
       return [
         ...prevItems,
         {
-          ...product,
-          quantity: 1,
-          image: product.img,        // ✔️ coerente con Firestore
-          price: Number(product.price) // ✔️ evita NaN
+          id: product.id,
+          name: product.name,
+          image: product.img,
+          price: Number(product.price),
+          selectedSize: product.selectedSize || null,
+          selectedColor: product.selectedColor || null,
+          quantity: 1
         }
       ];
     });
   };
 
+  // ✅ aggiorna quantità PER VARIANTE
   const onUpdateQuantity = (itemToUpdate, newQuantity) => {
     if (newQuantity <= 0) {
       onRemoveItem(itemToUpdate);
@@ -44,16 +55,25 @@ export const CartProvider = ({ children }) => {
 
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.id === itemToUpdate.id
+        item.id === itemToUpdate.id &&
+        item.selectedSize === itemToUpdate.selectedSize &&
+        item.selectedColor === itemToUpdate.selectedColor
           ? { ...item, quantity: newQuantity }
           : item
       )
     );
   };
 
+  // ✅ rimuove SOLO quella variante
   const onRemoveItem = (itemToRemove) => {
     setCartItems(prevItems =>
-      prevItems.filter(item => item.id !== itemToRemove.id)
+      prevItems.filter(item =>
+        !(
+          item.id === itemToRemove.id &&
+          item.selectedSize === itemToRemove.selectedSize &&
+          item.selectedColor === itemToRemove.selectedColor
+        )
+      )
     );
   };
 
@@ -77,5 +97,4 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// ✅ UNICO hook esportato
 export const useCart = () => useContext(CartContext);

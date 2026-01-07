@@ -86,24 +86,8 @@
   .original {
     text-decoration: line-through;
     color: #9aa7a9;
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
   
-  .add-cart {
-    background: #003d33;
-    color: #f2ebd1;
-    border: none;
-    padding: 0.35rem 0.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   
-  .add-cart:hover {
-    background: #c89f81;
-    color: #003d33;
-  }
   

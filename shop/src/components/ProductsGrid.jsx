@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import "../styles/ProductGrid.css";
 
-export default function ProductsGrid({ products, wishlist, toggleWishlist, addToCart, onProductClick }) {
+export default function ProductsGrid({ products, onProductClick }) {
   return (
     <section className="products-section">
       {products.length > 0 ? (
@@ -10,9 +10,6 @@ export default function ProductsGrid({ products, wishlist, toggleWishlist, addTo
             <ProductCard
               key={product.id}
               product={product}
-              wishlist={wishlist}
-              toggleWishlist={toggleWishlist}
-              addToCart={() => addToCart(product)}
               onProductClick={() => onProductClick(product)} 
             />
           ))}

@@ -1,16 +1,18 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
 import "../styles/Carrello.css";
 
-export const Carrello = ({ 
-    isOpen, 
-    onClose, 
-    cartItems = [], 
-    onUpdateQuantity, 
-    onRemoveItem 
-  }) => {
-  
-  // Usiamo Number() per evitare errori NaN se il prezzo arriva come stringa
+export const Carrello = ({
+  isOpen,
+  onClose,
+  cartItems = [],
+  onUpdateQuantity,
+  onRemoveItem
+}) => {
+
+  const navigate = useNavigate();
+
   const total = cartItems.reduce((sum, item) => {
     const price = Number(item.price) || 0;
     return sum + (price * item.quantity);
@@ -24,7 +26,7 @@ export const Carrello = ({
         <div className="cart-header">
           <div className="cart-header-title">
             <ShoppingBag size={24} />
-            <h2>Il tuo Carrello</h2>
+            <h2>CARRELLO</h2>
           </div>
           <button onClick={onClose} className="close-btn">
             <X size={24} />
@@ -34,13 +36,14 @@ export const Carrello = ({
         <div className="cart-content">
           {cartItems.length === 0 ? (
             <div className="empty-cart">
-              <p>Il tuo carrello è vuoto.</p>
+              <p>Il carrello è vuoto.</p>
             </div>
-          ) : (
+          ) 
+          : 
+          (
             <div className="cart-items">
               {cartItems.map((item) => {
-                // Gestione fallback per l'immagine: prova 'image' poi 'img' (da Firestore)
-                const itemImg = item.image || item.img;
+                const itemImg = item.image;
                 const itemPrice = Number(item.price) || 0;
 
                 return (
@@ -50,8 +53,9 @@ export const Carrello = ({
                       <h4>{item.name}</h4>
                       {(item.selectedSize || item.selectedColor) && (
                         <p className="cart-item-details">
-                          {item.selectedSize && `Taglia: ${item.selectedSize}`} 
-                          {item.selectedColor && ` • Colore: ${item.selectedColor}`}
+                          {item.selectedColor && `-Colore: ${item.selectedColor}`} <br />
+                          {item.selectedSize && `-Taglia: ${item.selectedSize}`}
+                          
                         </p>
                       )}
                       <div className="cart-item-controls">
@@ -69,8 +73,8 @@ export const Carrello = ({
                         </span>
                       </div>
                     </div>
-                    <button 
-                      className="remove-item-btn" 
+                    <button
+                      className="remove-item-btn"
                       onClick={() => onRemoveItem(item)}
                       title="Rimuovi"
                     >
@@ -89,7 +93,8 @@ export const Carrello = ({
               <span>Totale</span>
               <span>€{total.toFixed(2)}</span>
             </div>
-            <button className="checkout-btn">
+            <button className="checkout-btn"
+              onClick={() => navigate("/checkout")}>
               Procedi all'ordine
             </button>
           </div>

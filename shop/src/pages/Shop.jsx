@@ -13,7 +13,6 @@ import "../styles/Shop.css";
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
-  const [wishlist, setWishlist] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null); 
@@ -43,47 +42,50 @@ export default function Shop() {
     fetchProducts();
   }, []);
 
-  // Gestione Wishlist
-  const toggleWishlist = (id) => setWishlist((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  // NUOVO: Handler per aprire i dettagli del prodotto
   const handleProductClick = (product) => {
     setSelectedProduct(product);
   };
 
-  // NUOVO: Handler per tornare alla griglia prodotti
   const handleBackToShop = () => {
     setSelectedProduct(null);
   };
 
-  // Filtro ricerca
+
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Se è selezionato un prodotto, mostra la pagina dettaglio
+  
   if (selectedProduct) {
     return (
       <div className="salesflow-container">
         <Header />
+
+        <Carrello
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={onUpdateQuantity}
+          onRemoveItem={onRemoveItem}
+        />
+
         <ProductDetails
-          product={selectedProduct}
-          onBack={handleBackToShop}
-          onAddToCart={addToCart}
-          wishlist={wishlist}
-          toggleWishlist={toggleWishlist}
+           product={selectedProduct}
+           onBack={handleBackToShop}
+           onAddToCart={addToCart}
+           cartCount={cartCount}          
+           onOpenCart={() => setIsCartOpen(true)}
         />
         <Footer />
       </div>
     );
   }
 
-  // Altrimenti mostra la griglia prodotti normale
   return (
     <div className="salesflow-container">
       <Header />
 
-      {/* Il Carrello Overlay: sincronizzato con il Context globale */}
       <Carrello
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
@@ -97,7 +99,7 @@ export default function Shop() {
           <Search className="search-icon" />
           <input
             type="text"
-            placeholder="Cerca prodotti Panda..."
+            placeholder="Cerca prodotti..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -105,11 +107,6 @@ export default function Shop() {
         </div>
 
         <div className="actions-bar">
-          <button className="favorites-btn">
-            <Heart size={20} />
-            <span>Preferiti</span>
-          </button>
-
           <button className="cart-btn" onClick={() => setIsCartOpen(true)}>
             <div className="cart-icon-wrapper">
               <ShoppingCart size={20} />
@@ -122,9 +119,6 @@ export default function Shop() {
 
       <ProductsGrid
         products={filteredProducts}
-        wishlist={wishlist}
-        toggleWishlist={toggleWishlist}
-        addToCart={addToCart}
         onProductClick={handleProductClick} 
       />
 

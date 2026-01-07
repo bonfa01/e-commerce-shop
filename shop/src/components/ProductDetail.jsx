@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react';
 import '../styles/ProductDetail.css';
 
-export default function ProductDetails({ product, onBack, onAddToCart, wishlist, toggleWishlist }) {
+export default function ProductDetails({ product, onBack, onAddToCart, cartCount, onOpenCart }) {
   // Variant State
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || '');
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || '');
@@ -26,43 +26,34 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
     onAddToCart({
       ...product,
       selectedSize,
-      selectedColor
+      selectedColor,
+      price: Number(getPrice())
+
     });
+    onOpenCart();
   };
 
   return (
     <div className="product-details-container">
+      <div className="cart" onClick={onOpenCart}>
+        <ShoppingCart size={24} />
+        {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+      </div>
+      
       <button onClick={onBack} className="back-button">
         <ArrowLeft size={20} />
         Torna allo Shop
       </button>
 
       <div className="details-wrapper">
-        <div className="details-image-section">
-          <div className="main-image-wrapper">
-            <img 
-              src={product.img} 
-              alt={product.name} 
-              className="details-main-image"
-            />
-            {product.badge && (
-              <div className="product-badge-details">{product.badge}</div>
-            )}
-            <button 
-              className="wishlist-button-details" 
-              onClick={() => toggleWishlist(product.id)}
-            >
-              <Heart 
-                className={wishlist[product.id] ? "fill-red-500 text-red-500" : ""} 
-                size={24} 
-              />
-            </button>
-          </div>
-        </div>
-
+        <img
+          src={product.img}
+          alt={product.name}
+          className="details-image"
+        />
         <div className="details-info-section">
           <h1 className="details-title">{product.name}</h1>
-          
+
           <div className="details-price-section">
             <span className="details-price">${getPrice()}</span>
             {product.discount > 0 && (
@@ -124,7 +115,7 @@ export default function ProductDetails({ product, onBack, onAddToCart, wishlist,
             </div>
           )}
 
-          <button 
+          <button
             onClick={handleAddToCart}
             className="add-to-cart-button"
           >

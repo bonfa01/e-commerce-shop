@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Regole generali per ereditare lo stile */
+.checkout-container {
+  max-width: 1200px; /* Allineato con la tua search-bar */
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #003d33; /* Tuo verde scuro */
+}
+
+/* Header e Titoli */
+.checkout-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003d33;
+  margin-bottom: 1rem;
+}
+
+/* Pulsante Indietro */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #003d33; /* Verde invece di rosso */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.back-button:hover {
+  color: #c89f81; /* Tuo accent dorato */
+}
+
+.back-button svg {
+  margin-right: 8px;
+}
+
+/* Layout Wrapper */
+.checkout-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem; /* Spaziatura più ariosa */
+  align-items: flex-start;
+}
+
+/* --- CARD STYLE (Base per Form e Riepilogo) --- */
+.checkout-form,
+.order-summary {
+  background: #ffffff; /* Scheda bianca su sfondo crema */
+  padding: 2rem;
+  border-radius: 12px; /* Coerente con la search-bar */
+  border: 1px solid rgba(0, 61, 51, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Ombra morbida */
+  transition: transform 0.3s ease;
+}
+
+.order-summary li{
+    display: space-between;
+
+}
+
+/* Sezione Form */
+.checkout-form {
+  flex: 1.5; /* Occupa più spazio del riepilogo */
+  min-width: 300px;
+}
+
+.checkout-form h3, 
+.order-summary h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #003d33;
+  border-bottom: 2px solid #f2ebd1;
+  padding-bottom: 10px;
+}
+
+.checkout-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #003d33;
+}
+
+/* Input Styles - Stile "Search Wrapper" */
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(169, 185, 175, 0.5); /* Bordo delicato */
+  background: #fdfcf8; /* Leggermente diverso dal bianco puro */
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #003d33;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  outline: none;
+  border-color: #c89f81; /* Accent color al focus */
+  box-shadow: 0 0 0 3px rgba(200, 159, 129, 0.15);
+  background: white;
+}
+
+/* Sezione Riepilogo (Destra) */
+.order-summary {
+  flex: 1;
+  min-width: 280px;
+  position: sticky;
+  top: 20px; /* Segue lo scroll se la pagina è lunga */
+}
+
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.order-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f2ebd1;
+  font-size: 0.95rem;
+}
+
+.order-summary li span:first-child {
+  color: #555; /* Testo descrizione leggermente più chiaro */
+}
+
+.order-summary li span:last-child {
+  font-weight: 600;
+  color: #003d33;
+}
+
+/* Totale */
+.order-summary .total {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #003d33;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #003d33;
+}
+
+/* Pulsante "Paga Ora" */
+.place-order-btn {
+  background: #003d33; /* Tuo colore primario */
+  color: #f2ebd1; /* Testo chiaro crema */
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 25px;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 61, 51, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.place-order-btn:hover {
+  background: #c89f81; /* Hover Accent */
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(200, 159, 129, 0.3);
+}
+
+.place-order-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .checkout-wrapper h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Ogni bottone */
+  .payment-option {
+    
+    width: 100%;
+  }
+  
+  .payment-option input[type="radio"] {
+    display: none; /* nasconde il vero radio */
+  }
+  
+  .payment-option label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    background-color: #fff;
+  }
+  
+  .payment-option label:hover {
+    border-color: #003d33;
+  }
+  
+  /* Bottone selezionato */
+  .payment-option input[type="radio"]:checked + label {
+    border-color: #003d33;
+  }
+  
+  /* Logo a destra */
+  .payment-logo {
+    height: 24px; /* regola come vuoi */
+    width: auto;
+    margin-left: 1rem;
+  }
+  
+  
+/* Schermata di Successo */
+.success-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.success-message svg {
+  color: #003d33; /* Icona verde */
+  margin-bottom: 1rem;
+}
+
+.success-message h2 {
+  color: #003d33;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-wrapper {
+    flex-direction: column;
+  }
+  
+  .checkout-form, 
+  .order-summary {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .order-summary {
+    position: static; 
+    order: -1; 
+    margin-bottom: 20px;
+  }
+}
