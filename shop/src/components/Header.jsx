@@ -20,9 +20,9 @@ export default function Header() {
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <nav className="header-nav">
         <Link to="/" className={`nav-link ${isActive("/")}`}>Home</Link>
-        <Link to="/about" className={`nav-link ${isActive("/about")}`}>Chi Siamo</Link>
+        <Link to="/about" className={`nav-link ${isActive("/about")}`}>Chi siamo</Link>
+        <Link to="/iscriviti" className={`nav-link ${isActive("/iscriviti")}`}>Iscriviti</Link>
         <Link to="/shop" className={`nav-link ${isActive("/shop")}`}>Shop</Link>
-        <Link to="/archivio" className={`nav-link ${isActive("/archivio")}`}>Archivio</Link>
       </nav>
 
       <button className="burger-btn" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
@@ -32,8 +32,8 @@ export default function Header() {
       <div className={`mobile-nav ${mobileNavOpen ? "open" : ""}`}>
         <Link to="/" onClick={() => setMobileNavOpen(false)}>Home</Link>
         <Link to="/about" onClick={() => setMobileNavOpen(false)}>Chi Siamo</Link>
+        <Link to="/iscriviti" onClick={() => setMobileNavOpen(false)}>iscriviti</Link>
         <Link to="/shop" onClick={() => setMobileNavOpen(false)}>Shop</Link>
-        <Link to="/archivio" onClick={() => setMobileNavOpen(false)}>Archivio</Link>
       </div>
     </header>
   );
