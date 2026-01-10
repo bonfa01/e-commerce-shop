@@ -67,10 +67,10 @@ body {
 .input-row {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap; /* Per schermi piccoli */
+  flex-wrap: wrap; 
 }
 
-/* Su desktop, i campi in riga prendono il 50% */
+
 .input-row .input-group {
   flex: 1;
 }
@@ -94,9 +94,9 @@ body {
 .iscrizione-form input[type="email"],
 .iscrizione-form input[type="tel"] {
   width: 100%;
-  padding: 16px 16px 16px 50px; /* Spazio per l'icona */
+  padding: 16px 16px 16px 50px; 
   border-radius: var(--radius-std);
-  border: 2px solid #e0e6e5; /* Un grigio chiaro neutro */
+  border: 2px solid #e0e6e5; 
   background-color: var(--color-white);
   outline: none;
   font-size: 1rem;
@@ -108,7 +108,7 @@ body {
 
 .iscrizione-form input:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(200, 159, 129, 0.2); /* Alone color accent */
+  box-shadow: 0 0 0 4px rgba(200, 159, 129, 0.2); 
 }
 
 .iscrizione-form input:focus + .input-icon,
@@ -156,12 +156,11 @@ body {
 }
 
 .city-suggestions li:hover {
-  background-color: var(--color-secondary); /* Beige chiaro al passaggio */
+  background-color: var(--color-secondary); 
   color: var(--color-primary);
   font-weight: 600;
 }
 
-/* --- Photo Upload Section --- */
 .photo-upload-section {
   margin-top: 1rem;
 }
@@ -182,11 +181,11 @@ body {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: rgba(242, 235, 209, 0.3); /* Color secondary molto trasparente */
+  background-color: rgba(242, 235, 209, 0.3); 
   position: relative;
   overflow: hidden;
   min-height: 180px;
-  display: flex; /* Assicura allineamento */
+  display: flex; 
   align-items: center;
   justify-content: center;
 }
@@ -270,7 +269,7 @@ body {
 /* --- Submit Button --- */
 .submit-btn {
   background: var(--color-primary);
-  color: var(--color-secondary); /* Testo beige su fondo verde */
+  color: var(--color-secondary); 
   padding: 1.2rem;
   border: none;
   border-radius: var(--radius-std);
